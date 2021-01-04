@@ -2,26 +2,26 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
     labels:
-        app: jay-solo-microservice
+        app: furious-motion-microservice
         stack: frontend
         source: demo
-    name: jay-solo-microservice
+    name: furious-motion-microservice
     namespace: microservices
 spec:
     replicas: 3
     selector:
         matchLabels:
-            run: jay-solo-microservice
+            run: furious-motion-microservice
     template:
         metadata:
             labels:
-                app: jay-solo-microservice
-                run: jay-solo-microservice
+                app: furious-motion-microservice
+                run: furious-motion-microservice
                 source: demo
         spec:
             containers:
-                -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/jay-solo-microservice
-                    name: jay-solo-microservice
+                -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/furious-motion-microservice
+                    name: furious-motion-microservice
                     ports:
                         -   name: web
                             containerPort: 8080
@@ -31,13 +31,13 @@ kind: Service
 apiVersion: v1
 metadata:
     labels:
-        app: jay-solo-microservice-service
-    name: jay-solo-microservice-service
+        app: furious-motion-microservice-service
+    name: furious-motion-microservice-service
     namespace: microservices
 spec:
     selector:
         source: demo
-        app: jay-solo-microservice
+        app: furious-motion-microservice
     ports:
         -   name: web
             protocol: TCP
@@ -51,15 +51,15 @@ kind: Ingress
 metadata:
     annotations:
         nginx.ingress.kubernetes.io/rewrite-target: /$2
-    name: jay-solo-ingress
+    name: furious-motion-ingress
     namespace: microservices
 spec:
     rules:
         -   http:
                 paths:
-                    -   path: /jay-solo(/|$)(.*)
+                    -   path: /furious-motion(/|$)(.*)
                         backend:
-                            serviceName: jay-solo-microservice-service
+                            serviceName: furious-motion-microservice-service
                             servicePort: 30201
 
 
