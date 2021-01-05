@@ -25,9 +25,9 @@ spec:
                 - name: {{.Release.Name}}-microservice
                   {{- $valtag := .Values.tag -}}
                   {{- if $valtag}}
-                  image: {{.Values.ecr}}/{{.Release.Name}}-microservice:{{ $valtag }}"
+                  image: {{.Values.ecr}}/{{.Values.image}}-microservice:{{ $valtag }}"
                   {{- else}}
-                  image: {{.Values.ecr}}/{{.Release.Name}}-microservice
+                  image: {{.Values.ecr}}/{{.Values.image}}-microservice
                   {{- end}}
                   ports:
                     -   name: web
